@@ -1,1 +1,181 @@
+<html lang="en-US">
+        <head>
+            <title>Image Share PureJS</title>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/united/bootstrap.min.css" />
+            <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript" ></script> 
 
+            <link rel="stylesheet" href="styles/style.css"/>
+            <script src="scripts/script.js"></script> 
+         
+      </head>
+      <body>
+            
+            <div class='container'>
+                <div class='jumbotron'>
+                    <h2>Welcome to Image Share</h2>
+                </div>
+
+                <div class='row albumsNav'>
+                    <span class='albumLabel'>Albums:</span>
+                    <ul class="nav nav-pills" id="albumList">
+                        <li role="presentation" class="tab active"><a href="#">Nature</a></li>
+                        <li role="presentation" class='tab'><a href="#">Urban Life</a></li>
+                        <li role="presentation" class='tab'><a href="#">Our Impact</a></li>
+                    </ul>
+                </div>
+
+                  <button id='addImageButton' class='btn btn-info' 
+                    data-toggle="modal" data-target="#addImageModal">Add Image</button>
+                
+                  <button id='newAlbumButton' class='btn btn-info'
+                    data-toggle="modal" data-target="#createAlbumModal">Create new Album</button>
+                
+                <br />
+                <div class='well' id='galleryDiv'></div>
+            </div>
+
+
+            <!-- Full Image Display modal -->
+            <div class="modal fade" id="displayImageModal"  tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id='titleModal'></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class='row'>
+                                <div id="imageModal" class='col-md-8 col-md-offset-2 col-xs-12'></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+            <!-- Add Image modal -->
+            <div class="modal fade" id="addImageModal"  tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Upload your image</h4>
+                        </div>
+                        
+                        <form>
+                                <div class="modal-body">
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <label for="uploadImageTitle">Title</label>
+                                            <input type="text" class="form-control" id="uploadImageTitle" placeholder="Image Title" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="uploadImageSource">Image URL</label>
+                                            <input type="url" class="form-control" id="uploadImageSource" placeholder="Image URL / source" required>
+                                        </div>
+                                                  
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id='privateCheckbox'> Private (only 'Private' pictures cannot be deleted)
+                                            </label>
+                                        </div>
+                                        <p id='errorSource' class='errorStyle'></p>
+                                        <p id='imageVerified' class='successStyle'>Image verified and uploaded successfully!</p>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" id='uploadImageConfirm' class="btn btn-primary">Publish Image</button>  
+                                </div>
+                        </form>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+            <!-- Create Album modal -->
+            <div class="modal fade" id="createAlbumModal"  tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Create new Album and Upload it's first Image</h4>
+                    </div>
+                    
+                    <form>
+                            <div class="modal-body">
+                                <div class='row'>
+                                    <div class="form-group">
+                                        <label for="newAlbumName">Album Name</label>
+                                        <input type="text" class="form-control" id="newAlbumName" placeholder="Name of your Album" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newAlbumImageTitle">Title</label>
+                                        <input type="text" class="form-control" id="newAlbumImageTitle" placeholder="Image Title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newAlbumImageSource">Image URL</label>
+                                        <input type="url" class="form-control" id="newAlbumImageSource" placeholder="Image URL / source" required>
+                                    </div>
+                                              
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id='privateCheckbox'> Private (only 'Private' pictures cannot be deleted)
+                                        </label>
+                                    </div>
+                                    <p id='errorSourceAlbumModal' class='errorStyle'></p>
+                                    <p id='imageVerifiedAlbumModal' class='successStyle'>New Album has been created. Image verified and uploaded successfully!</p>
+                                </div>
+                            </div>
+                            
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" id='createAlbumConfirm' class="btn btn-primary">Create Album and Publish Image</button>  
+                            </div>
+                    </form>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <!-- Confirm delete image modal -->
+        <div class="modal fade" id="confirmDeleteModal"  tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Confirm to delete Image</h4>
+                </div>
+                
+                <form>
+                        <div class="modal-body">
+                            <div class='row'>
+                                <div class="form-group">
+                                    <p>Are you sure, you want to delete this image?</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" id='deleteImageConfirm' class="btn btn-primary">Confirm Delete</button>  
+                        </div>
+                </form>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+      </body>
+</html>
