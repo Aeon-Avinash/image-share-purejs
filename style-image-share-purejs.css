@@ -1,0 +1,52 @@
+.imageThumbStyle {
+ padding: 10px;
+ box-shadow: 10px 10px 8px #888888;
+}
+
+.albumsNav {
+    line-height: 120%;
+}
+
+.albumLabel {
+    font-size: 24px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    float: left;
+}
+
+#albumList {
+    margin-left: 15px;
+    margin-bottom: 15px; 
+    float: left;
+}
+
+
+input:invalid {
+    border: 2px dashed crimson;
+}
+  
+input:valid {
+    border: 2px solid mediumseagreen;
+}
+
+.errorStyle {
+    color: crimson;
+    float: right !important;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.successStyle {
+    color: mediumseagreen;
+    float: right;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    display: none;
+}
+
+.buttonStyle {
+    display: inline-block;
+    background-color: salmon;
+    color: darkred;
+    text-decoration: none;
+}
